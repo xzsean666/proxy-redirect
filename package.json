@@ -1,0 +1,38 @@
+{
+  "name": "proxy-redirect",
+  "version": "1.0.0",
+  "description": "A high-performance proxy server with token authentication",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "NODE_ENV=development LOG_LEVEL=debug node index.js",
+    "pm2:start": "pm2 start index.js --name proxy-redirect -i ${PM2_INSTANCES:-4}",
+    "pm2:stop": "pm2 stop proxy-redirect",
+    "pm2:restart": "pm2 restart proxy-redirect",
+    "pm2:delete": "pm2 delete proxy-redirect",
+    "pm2:logs": "pm2 logs proxy-redirect",
+    "pm2:status": "pm2 status",
+    "pm2:monit": "pm2 monit",
+    "docker:build": "docker-compose build",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "docker:logs": "docker-compose logs -f",
+    "docker:restart": "docker-compose restart",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "proxy",
+    "redirect",
+    "api",
+    "gateway",
+    "express"
+  ],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.12.1",
+  "dependencies": {
+    "axios": "^1.10.0",
+    "compression": "^1.7.4",
+    "express": "^5.1.0"
+  }
+}

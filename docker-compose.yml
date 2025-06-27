@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  proxy-redirect:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    user: root
+    network_mode: host
+    container_name: proxy-redirect-app
+    environment:
+      # - http_proxy=http://127.0.0.1:7897
+      # - https_proxy=http://127.0.0.1:7897
+      - NODE_ENV=production
+      - PORT=3000
+      - HOST=0.0.0.0
+      - TARGET_BASE=https://api.binance.com
+      - PROXY_TOKEN=666
+      - PROXY_TIMEOUT=30000
+      - CACHE_TTL=10
+      - PM2_INSTANCES=2
+
+    # 资源限制
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: '2.0'
+        reservations:
+          memory: 512M
+          cpus: '0.5'
+    command: ['/usr/local/bin/startup.sh']
